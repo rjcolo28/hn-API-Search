@@ -5,7 +5,10 @@ class HNRow extends Component {
         return(
             <div key={this.props.article.id}>
                 <h3>{this.props.article.title}</h3>
-                {this.props.article.author}<br></br>{this.props.article.url}
+                {this.props.article.author}
+                <br></br>
+                <br></br>
+                {this.props.article.url}
             </div>
         )
     }

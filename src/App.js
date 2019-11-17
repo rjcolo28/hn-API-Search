@@ -34,9 +34,8 @@ class App extends Component {
   }
 
   handleInputChange(event) {
-    console.log(event.target.value)
     const searchTerm = event.target.value
-    this.performSearch(searchTerm)
+    this.runSearch(searchTerm)
   }
 
   render() {
@@ -45,17 +44,7 @@ class App extends Component {
         <header className="App-Header">
           <h1>HN API Search</h1>
           <form>
-            <input
-              style = {{
-                fontSize: 24,
-                width: "99%",
-                paddingTop: 8,
-                paddingBottom: 8,
-                paddingLeft: 16
-              }}
-              placeholder="Enter term here"
-              onChange={this.handleInputChange}
-            />
+            <input style={{fontSize: 24}} placeholder="Enter term here" onChange={this.handleInputChange.bind(this)} />
             <p>{this.state.query}</p>
           </form>
         </header>
