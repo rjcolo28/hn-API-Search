@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "http://rjcolo-28.github.io/hn-API-Search",
   "dependencies": {
+    "axios": "^0.19.0",
     "jquery": "^3.4.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
