@@ -9,7 +9,7 @@ class Results extends Component {
     }
 
     componentWillMount() {
-        fetch("http://hn.algolia.com/api/v1/search?query=redux")
+        fetch("http://hn.algolia.com/api/v1/search?query=")
             .then(res => res.json())
             .then(data =>  this.setState({queries: data.hits}))
     }
