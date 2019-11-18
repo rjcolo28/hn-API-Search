@@ -45,7 +45,6 @@ class App extends Component {
           <h1>HN API Search</h1>
           <form>
             <input style={{fontSize: 24}} placeholder="Enter term here" onChange={this.handleInputChange.bind(this)} />
-            <p>{this.state.query}</p>
           </form>
         </header>
         <div className="container">
