@@ -1,7 +1,7 @@
 import FETCH_ARTICLES from './types';
 
 const fetchArticles = (searchTerm) => dispatch => {
-    fetch("http://hn.algolia.com/api/v1/search?query=")
+    fetch("http://hn.algolia.com/api/v1/search?query=" + searchTerm)
         .then(res => res.json())
         .then(articles =>
             dispatch({

@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import fetchArticles from '../actions/searchAction';
 
 class Search extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            searchTerm: ""
+            searchTerm: ''
         };
 
         this.onChange = this.onChange.bind(this);
@@ -17,10 +20,9 @@ class Search extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-        const searchTerm = this.state.searchTerm
-        fetch("http://hn.algolia.com/api/v1/search?query=" + searchTerm)
-        .then(res => res.json())
-        .then(data => console.log(data.hits))
+        const searchTerm = this.state.searchTerm;
+
+        this.props.fetchArticles(searchTerm);
     }
 
     render() {
@@ -46,4 +48,8 @@ class Search extends Component {
     }
 }
 
-export default Search
+Search.propTypes = {
+    fetchArticles: PropTypes.func.isRequired
+}
+
+export default connect(null, { fetchArticles })(Search)
