@@ -1,25 +1,19 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import fetchArticles from '../actions/searchAction';
 
-class Results extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            queries: []
-        }
-    }
-
+class Articles extends Component {
     componentWillMount() {
-        fetch("http://hn.algolia.com/api/v1/search?query=")
-            .then(res => res.json())
-            .then(data =>  this.setState({queries: data.hits}))
+        this.props.fetchArticles();
     }
 
     render() {
-        const articles = this.state.queries.map(query => (
-            <div key={query.objectID} >
-                <h3>{query.title}</h3>
-                <h4>{query.author}</h4>
-                <a href={query.url}>{query.url} </a>
+        const articles = this.props.articles.map(article => (
+            <div key={article.objectID} >
+                <h3>{article.title}</h3>
+                <h4>{article.author}</h4>
+                <a href={article.url} target="_blank">{article.url} </a>
             </div>
         ));
         return (
@@ -30,4 +24,13 @@ class Results extends Component {
     }
 }
 
-export default Results
+Articles.propTypes = {
+    fetchArticles: PropTypes.func.isRequired,
+    articles: PropTypes.array.isRequired
+}
+
+const mapStateToProps = state => ({
+    articles: state.articles.items
+})
+
+export default connect(mapStateToProps, { fetchArticles })(Articles);
