@@ -4,6 +4,10 @@ import { connect } from 'react-redux';
 import getSearchTerm from '../actions/searchAction';
 
 class Search extends Component {
+
+    static propTypes = {
+        getSearchTerm: PropTypes.func.isRequired,
+    }
     constructor(props) {
         super(props);
         this.state = {
@@ -19,10 +23,9 @@ class Search extends Component {
     }
 
     onSubmit(e) {
-        e.preventDefault();
-        const searchTerm = this.state.searchTerm;
+        e.preventDefault()
 
-        this.props.getSearchTerm(searchTerm);
+        this.props.getSearchTerm(this.state.searchTerm);
     }
 
     render() {
@@ -48,8 +51,9 @@ class Search extends Component {
     }
 }
 
-Search.propTypes = {
-    getSearchTerm: PropTypes.func.isRequired
-}
 
-export default connect(null, { getSearchTerm })(Search)
+const mapPropsToState = dispatch => ({
+    getSearchTerm: (input) => dispatch(getSearchTerm(input))
+})
+
+export default connect(mapPropsToState, { getSearchTerm })(Search)

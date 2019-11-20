@@ -1,12 +1,14 @@
-import SEARCH_TERM from '../actions/types';
+import GET_TERM from '../actions/types';
 
+const initState = {
+    searchTerm: null
+}
 
-
-export default function (state = '', action) {
+export default function (state = initState, action = {}) {
     switch (action.type) {
-        case SEARCH_TERM:
+        case GET_TERM:
             return {
-                state: action.text
+                searchTerm: action.term
             }
         default:
             return state
