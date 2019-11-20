@@ -1,4 +1,5 @@
 import FETCH_ARTICLES from './types';
+import GET_TERM from './types';
 
 const fetchArticles = (searchTerm) => dispatch => {
     fetch("http://hn.algolia.com/api/v1/search?query=" + searchTerm)
@@ -9,5 +10,10 @@ const fetchArticles = (searchTerm) => dispatch => {
                 payload: articles.hits,
             }))
 };
+
+export const getSearchTerm = text => ({
+    type: GET_TERM,
+    text
+})
 
 export default fetchArticles;

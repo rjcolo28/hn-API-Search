@@ -1,3 +1,4 @@
 const FETCH_ARTICLES = 'FETCH_ARTICLES';
+const GET_TERM = 'GET_TERM';
 
-export default FETCH_ARTICLES;
+export default (FETCH_ARTICLES, GET_TERM);

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import fetchArticles from '../actions/searchAction';
+import getSearchTerm from '../actions/searchAction';
 
 class Search extends Component {
     constructor(props) {
@@ -22,7 +22,7 @@ class Search extends Component {
         e.preventDefault();
         const searchTerm = this.state.searchTerm;
 
-        this.props.fetchArticles(searchTerm);
+        this.props.getSearchTerm(searchTerm);
     }
 
     render() {
@@ -49,7 +49,7 @@ class Search extends Component {
 }
 
 Search.propTypes = {
-    fetchArticles: PropTypes.func.isRequired
+    getSearchTerm: PropTypes.func.isRequired
 }
 
-export default connect(null, { fetchArticles })(Search)
+export default connect(null, { getSearchTerm })(Search)
