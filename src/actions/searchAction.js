@@ -11,11 +11,11 @@ const fetchArticles = (searchTerm) => dispatch => {
             }))
 };
 
-export function getSearchTerm(term) {
-    return{
+export const getSearchTerm = term => dispatch => {
+    dispatch({
         type: GET_TERM,
         term
-    };
+    })
 }
 
 export default fetchArticles;

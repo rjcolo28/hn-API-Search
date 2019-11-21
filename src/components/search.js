@@ -5,9 +5,6 @@ import getSearchTerm from '../actions/searchAction';
 
 class Search extends Component {
 
-    static propTypes = {
-        getSearchTerm: PropTypes.func.isRequired,
-    }
     constructor(props) {
         super(props);
         this.state = {
@@ -24,10 +21,10 @@ class Search extends Component {
 
     onSubmit(e) {
         e.preventDefault()
+        const searchTerm = this.state.searchTerm
 
-        this.props.getSearchTerm(this.state.searchTerm);
+        this.props.getSearchTerm(searchTerm);
     }
-
     render() {
         return (
             <div>
@@ -52,8 +49,13 @@ class Search extends Component {
 }
 
 
-const mapPropsToState = dispatch => ({
-    getSearchTerm: (input) => dispatch(getSearchTerm(input))
+Search.propTypes = {
+    getSearchTerm: PropTypes.func.isRequired,
+    searchTerm: PropTypes.object.isRequired
+}
+
+const mapPropsToState = state => ({
+    searchTerm: state.searchTerm
 })
 
 export default connect(mapPropsToState, { getSearchTerm })(Search)
